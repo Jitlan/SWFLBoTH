@@ -9,3 +9,6 @@ https://docs.oracle.com/javase/tutorial/networking/sockets/clientServer.html
 
 
 http://cs.lmu.edu/~ray/notes/javanetexamples/
+
+
+http://www.ejbtutorial.com/distributed-systems/hello-world-for-socket-programming-using-java
