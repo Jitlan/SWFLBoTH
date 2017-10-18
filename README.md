@@ -6,3 +6,6 @@ The Minecraft version will be 1.7.10, for it is the most stable version of minec
 20170927 at 2105 josh said will had good idea
 20170927 at 2112 josh said will had good idea
 https://docs.oracle.com/javase/tutorial/networking/sockets/clientServer.html
+
+
+http://cs.lmu.edu/~ray/notes/javanetexamples/
