@@ -39,6 +39,8 @@ import org.jext.dawn.*;
 public class FileManager
 {
   /** Default line separator (system's one) used by the file manager. */
+	
+	
   public static final String NEW_LINE = System.getProperty("line.separator");
 
   
