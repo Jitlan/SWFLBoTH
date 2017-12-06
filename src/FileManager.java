@@ -41,6 +41,7 @@ public class FileManager
   /** Default line separator (system's one) used by the file manager. */
   public static final String NEW_LINE = System.getProperty("line.separator");
 
+  
   /**
    * Opens a file for input (i.e to read from it).
    * @param ID The file internal ID
