@@ -1,8 +1,10 @@
 
-public class fileManager {
+public class fileManager 
+{
 
-	public fileManager() {
-		// TODO Auto-generated constructor stub
+	public fileManager() 
+	{
+		
 	}
 
 }
