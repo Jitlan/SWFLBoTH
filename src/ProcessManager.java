@@ -1,29 +1,28 @@
 import java.util.*;
 
-public class ProcessManager 
+public class ProcessManager
 {
 	private Job job;
 	private int quantum;
-	private MemoryManager m;
 	private List<Job> readyQueue;
 	private List<Job> finishQueue;
-	
-	
-	public ProcessManager() 
+
+
+	public ProcessManager()
 	{
 		job = new Job();
 		quantum = 10;
-		m = new MemoryManager();
 		readyQueue = new ArrayList<Job>();
 		finishQueue = new ArrayList<Job>();
-		
+
 	}
-	
-	public void loadJob()
+
+	public void loadJob(List<Job> jobs)
 	{
-		readyQueue = m.getJobQueue();
+		readyQueue = jobs;
 	}
-	
+
+	//round robin
 	public void runJob()
 	{
 		for(Job a : readyQueue)
@@ -33,15 +32,25 @@ public class ProcessManager
 				finishQueue.add(a);
 				readyQueue.remove(a);
 			}
-			a.setRunTime(a.getRunTime() - quantum);
+			else if((a.getRunTime() - quantum) <= -1)
+			{
+				a.setRunTime(0);
+			}
+			else
+			{
+				a.setRunTime(a.getRunTime() - quantum);
+			}
 		}
 	}
-	
-	public Job finishJob()
+
+	//add memory back to memory manager memorySize array
+	//change enum
+	public Job finishJob(Job job)
 	{
+		job.status = COMPLETE;
 		return job;
 	}
-	
-	
-	
+
+
+
 }

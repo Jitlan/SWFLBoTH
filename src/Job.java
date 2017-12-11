@@ -5,16 +5,17 @@ public class Job
 	private int size;
 	private int ID = 0;
 	private int runTime;
-	
-	public Job(String name, int size, int ID, int runTime)
+	private int blockUsed;
+
+	public Job(String name, int size, int ID, int runTime, int blockUsed)
 	{
 		this.name = name;
 		this.size = size;
 		this.ID = ID;
 		this.runTime = runTime;
-		
+		this.blockUsed = blockUsed;
 	}
-	
+
 	public Job()
 	{
 		this.name="";
@@ -22,17 +23,27 @@ public class Job
 		this.ID = 0;
 		this.runTime = 0;
 	}
-	
+
 	public String getName()
 	{
 		return name;
 	}
-	
+
 	public void setName(String name)
 	{
 		this.name = name;
 	}
-	
+
+	public int getBlockUsed()
+	{
+		return blockUsed;
+	}
+
+	public void setBlockUsed(int blockUsed)
+	{
+		this.blockUsed = blockUsed;
+	}
+
 	public int getSize()
 	{
 		return size;
@@ -42,7 +53,7 @@ public class Job
 	{
 		this.size = size;
 	}
-	
+
 	public enum status
 	{
 		RUNNING,WAITING,READY,COMPLETE;
@@ -53,7 +64,7 @@ public class Job
 		return ID;
 	}
 
-	public void setID(int iD) 
+	public void setID(int iD)
 	{
 		ID = iD;
 	}
@@ -65,7 +76,7 @@ public class Job
 	public void setRunTime(int runTime) {
 		this.runTime = runTime;
 	}
-	
-	
-	
+
+
+
 }

@@ -1,36 +1,39 @@
 import java.util.*;
 
-public class MemoryManager 
+public class MemoryManager
 {
-	public List<Integer> getProcessSize()
-	{
-		return processSize;
-	}
-
-	public void setProcessSize(List<Integer> processSize) 
-	{
-		this.processSize = processSize;
-	}
-
 	private List<Integer> processSize;
 	private int memorySize[] = {100 ,200 ,300, 400};
 	int ms = memorySize.length;
 	int ps = processSize.size();
 	private List<Job> jobQueue;
-	
-	public MemoryManager() 
+
+	public MemoryManager()
 	{
 		processSize = new ArrayList<Integer> ();
 		jobQueue = new ArrayList<Job>();
 	}
-	
+
+	public List<Integer> getProcessSize()
+	{
+		return processSize;
+	}
+
+	public void setProcessSize(List<Integer> processSize)
+	{
+		this.processSize = processSize;
+	}
+
 	private void BestFit(Job job)
 	{
 		List<Integer> memoryID = new ArrayList<Integer>();
 		int jobSize = job.getSize();
 		int index = -1;
 		int msr[] = new int[ms];
-		
+
+		//this loop iterate through memorySize Array
+		//sets msr to (memorysize - jobsize)
+		//this is to find the best fit index in next loop
 		for (int i = 0; i < ms; i++)
 		{
 			if(jobSize <= memorySize[i])
@@ -40,6 +43,9 @@ public class MemoryManager
 		}
 		int hold = msr[0];
 		int counter = 0;
+
+		//loop through memmorySizeRemaining (msr)
+		//hold best fit index spot
 		for(int a:msr)
 		{
 			if(hold > a)
@@ -48,13 +54,25 @@ public class MemoryManager
 				counter++;
 			}
 		}
+		//set index to the counter which found the bestfit index
 		index = counter;
+		//subtract memory from memorySize block
 		memorySize[index] = memorySize[index] - jobSize;
+		//
+		job.setBlockUsed(index);
+		//add job to queue for Process manager
 		jobQueue.add(job);
-		
 	}
-	
-	public List<Job> getJobQueue() 
+
+	public void addMemoryBack(Job job)
+	{
+		int jobBlock = job.getBlockUsed();
+		int jobSize = job.getSize();
+
+		memorySize[jobBlock] = memorySize[jobBlock] + jobSize;
+	}
+
+	public List<Job> getJobQueue()
 	{
 		return jobQueue;
 	}
@@ -64,32 +82,32 @@ public class MemoryManager
 		this.jobQueue = jobQueue;
 	}
 
-	public int[] getMemorySize() 
+	public int[] getMemorySize()
 	{
 		return memorySize;
 	}
 
-	public void setMemorySize(int[] memorySize) 
+	public void setMemorySize(int[] memorySize)
 	{
 		this.memorySize = memorySize;
 	}
 
-	public int getMs() 
+	public int getMs()
 	{
 		return ms;
 	}
 
-	public void setMs(int ms) 
+	public void setMs(int ms)
 	{
 		this.ms = ms;
 	}
 
-	public int getPs() 
+	public int getPs()
 	{
 		return ps;
 	}
 
-	public void setPs(int ps) 
+	public void setPs(int ps)
 	{
 		this.ps = ps;
 	}

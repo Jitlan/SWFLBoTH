@@ -1,10 +1,11 @@
+import java.io.File;
 
-public class fileManager 
+public class fileManager
 {
-
-	public fileManager() 
+	private File file;
+	public fileManager()
 	{
-		
+		file = new File();
 	}
 
 }
