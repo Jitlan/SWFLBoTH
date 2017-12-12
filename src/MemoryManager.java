@@ -4,8 +4,8 @@ public class MemoryManager
 {
 	private List<Integer> processSize;
 	private int memorySize[] = {100 ,200 ,300, 400};
-	int ms = memorySize.length;
-	int ps = processSize.size();
+	private int ms = memorySize.length;
+	private int ps = processSize.size();
 	private List<Job> jobQueue;
 
 	public MemoryManager()
@@ -31,6 +31,12 @@ public class MemoryManager
 		int index = -1;
 		int msr[] = new int[ms];
 
+
+		if(job.getName.equals("update file") || job.getName.equals("move file"))
+		{
+			this.addMemoryBack(job);
+		}
+
 		//this loop iterate through memorySize Array
 		//sets msr to (memorysize - jobsize)
 		//this is to find the best fit index in next loop
@@ -42,7 +48,7 @@ public class MemoryManager
 			}
 		}
 		int hold = msr[0];
-		int counter = 0;
+		int counter = 0;B
 
 		//loop through memmorySizeRemaining (msr)
 		//hold best fit index spot
@@ -62,6 +68,8 @@ public class MemoryManager
 		job.setBlockUsed(index);
 		//add job to queue for Process manager
 		jobQueue.add(job);
+
+
 	}
 
 	public void addMemoryBack(Job job)
