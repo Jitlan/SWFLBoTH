@@ -1,21 +1,32 @@
-package src;
 
 
 import java.util.*; 
 import java.net.URL;
-import org.eclipse.core.internal.boot.PlatformConfiguration;
-import org.eclipse.core.internal.runtime.InternalPlatform;
+//import org.eclipse.core.internal.boot.PlatformConfiguration;
+//import org.eclipse.core.internal.runtime.InternalPlatform;
 
 public class BootLoader {
 	
-	public static boolean CONFIGURATION_DEBUG = false;
-	public static final String PI_BOOT = "org.eclipse.core.boot"; //$NON-NLS-1$
-	public static final String OS_WIN32 = "win32";//$NON-NLS-1$
+	public void printBootSteps() {
+		 System.out.println("** CPU succesfully cleared all left over data in registers and all hardware tasks are complete**");
+		 System.out.println("Boot into BIOS, which has bootable devices");
+		 System.out.println("Check bootable devices for Operating System to boot");
+		 System.out.println("Find master boot record (MBR)");
+		 System.out.println("boot from first boot option");
+		 System.out.println("Load Kernel...");
+	 }
 	
+	/*
+	*necessary to use eclipse bootloader
+	*public static boolean CONFIGURATION_DEBUG = false;
+	*public static final String PI_BOOT = "org.eclipse.core.boot"; //$NON-NLS-1$
+	*public static final String OS_WIN32 = "win32";//$NON-NLS-1$
+	
+
 	public static String[] getCommandLineArgs() {
         return InternalPlatform.getDefault().getApplicationArgs();
 	}
-	
+	//get eclipse boot package
 	public static org.eclipse.core.boot.IPlatformConfiguration getCurrentPlatformConfiguration() {
         BundleContext context = InternalPlatform.getDefault().getBundleContext();
               // acquire factory service first
@@ -30,6 +41,7 @@ public class BootLoader {
         context.ungetService(configFactorySR);
            return new PlatformConfiguration(currentConfig);
 	}
+	//functions that the bootloader from eclipse can perform
 	 public static URL getInstallURL() {
          return InternalPlatform.getDefault().getInstallURL();
 	 }
@@ -93,5 +105,6 @@ public class BootLoader {
 	 }
 	 public static String[] startup(URL pluginPathLocation, String location, String[] args, Runnable handler) throws Exception {
          return null;
-	 }
+	 }*/
+
 }
