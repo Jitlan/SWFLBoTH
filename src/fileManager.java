@@ -14,13 +14,13 @@ public class fileManager
 
 	public Job createFile(String name, int size, int ID)
 	{
-		Job create = new Job("create file", size, ID, 10, 0);
+		Job create = new Job(name, size, ID, 10, 0);
 		this.name = name;
 		this.size = size;
 		return create;
 	}
 
-	public Job deleteFile(int[] memory, int ID)
+	public Job deleteFile(int[] memory, int ID, int size)
 	{
 		Job delete = new Job("delete file", size, ID, 10, 0);
 		return delete;
