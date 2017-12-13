@@ -20,7 +20,7 @@ public class fileManager
 		return create;
 	}
 
-	public Job deleteFile(int[] memory)
+	public Job deleteFile(int[] memory, int ID)
 	{
 		Job delete = new Job("delete file", size, ID, 10, 0);
 		return delete;
@@ -29,25 +29,18 @@ public class fileManager
 	public Job updateFile(int[] memory, int newSize, int ID, String name)
 	{
  		//job needs to update the memeory
-		Job update = new Job("update file",(size+NewSize), ID, 10, 0);
+		Job update = new Job("update file",(size+newSize), ID, 10, 0);
 		this.size = newSize;
 		this.name = name;
 		return update;
 	}
 
-	public Job moveFile(int[] memory)
+	public Job moveFile(int[] memory, int ID)
 	{
 		Job move = new Job("move file", size, ID, 10, 0);
 		return move;
 	}
 
-	//add memory back to memory location
-	public int[] addMemory(int[] memory)
-	{
-		int[] a = memory;
-		a[blockLocation] = a[blockLocation] + size;
-		return a;
-	}
 
 	public String getName()
 	{
@@ -67,16 +60,6 @@ public class fileManager
 	public void setSize(int size)
 	{
 		this.size = size;
-	}
-
-	public int getBlockLocation()
-	{
-		return this.blockLocation;
-	}
-
-	public void setBlockLocation(int blockLocation)
-	{
-		this.blockLocation = blockLocation;
 	}
 }
 

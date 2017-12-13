@@ -6,6 +6,15 @@ public class Job
 	private int ID = 0;
 	private int runTime;
 	private int blockUsed;
+	private status stat;
+
+	public status getStat() {
+		return stat;
+	}
+
+	public void setStat(status stat) {
+		this.stat = stat;
+	}
 
 	public Job(String name, int size, int ID, int runTime, int blockUsed)
 	{
@@ -56,7 +65,7 @@ public class Job
 
 	public enum status
 	{
-		RUNNING,WAITING,READY,COMPLETE;
+		RUNNING,WAITING,READY,COMPLETE
 	}
 
 	public int getID()

@@ -47,7 +47,7 @@ public class ProcessManager
 	//change enum
 	public Job finishJob(Job job)
 	{
-		job.status = COMPLETE;
+		job.setStat(Job.status.COMPLETE);
 		return job;
 	}
 

@@ -16,7 +16,7 @@ public class NetworkManager
     this.PORT_NUM = PORT_NUM;
   }
 
-  public void connectTo()
+  public void connectTo() throws IOException
   {
     ServerSocket serverSocket = null;
        try {

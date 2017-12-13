@@ -32,7 +32,7 @@ public class MemoryManager
 		int msr[] = new int[ms];
 
 
-		if(job.getName.equals("update file") || job.getName.equals("move file"))
+		if(job.getName().equals("update file") || job.getName().equals("move file"))
 		{
 			this.addMemoryBack(job);
 		}
@@ -48,7 +48,7 @@ public class MemoryManager
 			}
 		}
 		int hold = msr[0];
-		int counter = 0;B
+		int counter = 0;
 
 		//loop through memmorySizeRemaining (msr)
 		//hold best fit index spot
