@@ -5,7 +5,7 @@ public class MemoryManager
 	private List<Integer> processSize;
 	private int memorySize[] = {100 ,200 ,300, 400};
 	private int ms = memorySize.length;
-	private int ps = processSize.size();
+	//private int ps = processSize.size();
 	private List<Job> jobQueue;
 
 	public MemoryManager()
@@ -24,7 +24,7 @@ public class MemoryManager
 		this.processSize = processSize;
 	}
 
-	private void BestFit(Job job)
+	public void BestFit(Job job)
 	{
 		List<Integer> memoryID = new ArrayList<Integer>();
 		int jobSize = job.getSize();
@@ -40,6 +40,7 @@ public class MemoryManager
 		//this loop iterate through memorySize Array
 		//sets msr to (memorysize - jobsize)
 		//this is to find the best fit index in next loop
+		//System.out.println(ms);
 		for (int i = 0; i < ms; i++)
 		{
 			if(jobSize <= memorySize[i])
@@ -54,14 +55,17 @@ public class MemoryManager
 		//hold best fit index spot
 		for(int a:msr)
 		{
-			if(hold > a)
+			if(hold < a)
 			{
 				hold = a;
 				counter++;
 			}
 		}
+		
 		//set index to the counter which found the bestfit index
 		index = counter;
+		
+		System.out.println(index);
 		//subtract memory from memorySize block
 		memorySize[index] = memorySize[index] - jobSize;
 		//
@@ -109,8 +113,15 @@ public class MemoryManager
 	{
 		this.ms = ms;
 	}
+	
+	public String toString()
+	{
+		String str = memorySize[0]+","+memorySize[1]+","+memorySize[2]+","+memorySize[3];
+		return str;
+		
+	}
 
-	public int getPs()
+	/*public int getPs()
 	{
 		return ps;
 	}
@@ -118,5 +129,5 @@ public class MemoryManager
 	public void setPs(int ps)
 	{
 		this.ps = ps;
-	}
+	}*/
 }

@@ -4,12 +4,12 @@ public class OSRun
 {
   public static void main(String[] args)
   {
-    Bootloader boot = new Bootloader();
+    BootLoader boot = new BootLoader();
     ProcessManager processmanager = new ProcessManager();
     MemoryManager memorymanager = new MemoryManager();
-    NetworkManager networkmanager = new NetworkManager();
+    NetworkManager networkmanager = new NetworkManager("",0);
     CaesarCipher cc = new CaesarCipher();
-    FileManager filemanager = new fileManager();
+    fileManager filemanager = new fileManager();
     int jobIDCounter = 0;
     List<Job> files = new ArrayList<Job>();
 
@@ -20,9 +20,9 @@ public class OSRun
     {
       System.out.println("Type \'help\' for a list of commands");
       System.out.println("Enter in a command: ");
-      command = s.nextString();
+      command = s.nextLine();
 
-      if(command.eqauls("help"))
+      if(command.equals("help"))
       {
         System.out.println("Commands to print are:");
         System.out.println("create file");
@@ -35,23 +35,23 @@ public class OSRun
       if(command.equals("create file"))
       {
         System.out.println("Name your file");
-        String name = s.nextString();
+        String name = s.nextLine();
         System.out.println("give file a size");
         int size = s.nextInt();
         Job job = filemanager.createFile(name, size, jobIDCounter);
         jobIDCounter++;
         files.add(job);
-        memorymanager.bestfit(job);
-        processmanager.loadJob();
+        memorymanager.BestFit(job);
+        processmanager.loadJob(files);
         processmanager.runJob();
         System.out.println("File has been created and memory has been used");
-        System.out.println("current memory sizes are:" + memorymanager.getMemorySize());
+        System.out.println("current memory sizes are:" + memorymanager.toString());
       }
 
       if(command.equals("delete file"))
       {
         System.out.println("which file would you like to delete:");
-        String fileToDelete = s.nextString();
+        String fileToDelete = s.nextLine();
         int jobCount = 0;
         int jobIndex = -1;
 
@@ -59,7 +59,8 @@ public class OSRun
         {
           if(j.getName().equals(fileToDelete))
           {
-            jobIndex = count;
+            int count=0;
+			jobIndex = jobCount;
           }else
           {
             jobCount++;
@@ -68,8 +69,8 @@ public class OSRun
 
         files.remove(jobIndex);
 
-        Job job = filemanager.deleteFile(memorymanager.getMemorySize(), jobIDCounter);
-        memorymanager.addMemoryBack();
+        Job job = filemanager.moveFile(memorymanager.getMemorySize(), jobIDCounter);
+        memorymanager.addMemoryBack(job);
         System.out.println("file has been deleted");
 
       }
@@ -77,24 +78,24 @@ public class OSRun
       if(command.equals("move file"))
       {
         System.out.println("What file do you want to move");
-        String fileToMove = s.nextString();
+        String fileToMove = s.nextLine();
         Job job = filemanager.moveFile(memorymanager.getMemorySize(), jobIDCounter);
         memorymanager.addMemoryBack(job);
-        memorymanager.bestfit(job)
+        memorymanager.BestFit(job);
         System.out.println("file has been moved to best fit spot");
       }
 
       if(command.equals("update file"))
       {
         System.out.println("What file do you want to update");
-        String fileToUpdateName = s.nextString();
+        String fileToUpdateName = s.nextLine();
         System.out.println("What is the name of the new file");
-        String fileToUpdate = s.nextString();
+        String fileToUpdate = s.nextLine();
         System.out.println("What is the size of the new file");
-        String fileToUpdateSize = s.nextInt();
+        int fileToUpdateSize = s.nextInt();
 
         Job job = filemanager.updateFile(memorymanager.getMemorySize(), fileToUpdateSize, jobIDCounter, fileToUpdate);
-        memorymanager.bestfit(job);
+        memorymanager.BestFit(job);
 
         System.out.println("File has been moved");
       }

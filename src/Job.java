@@ -8,11 +8,13 @@ public class Job
 	private int blockUsed;
 	private status stat;
 
-	public status getStat() {
+	public status getStat() 
+	{
 		return stat;
 	}
 
-	public void setStat(status stat) {
+	public void setStat(status stat) 
+	{
 		this.stat = stat;
 	}
 
