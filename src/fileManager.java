@@ -1,11 +1,11 @@
 
-public class fileManager
+public class FileManager
 {
 	private String name;
 	private int size;
 	//private int blockLocation;
 
-	public fileManager()
+	public FileManager()
 	{
 		this.name = "";
 		this.size = 0;

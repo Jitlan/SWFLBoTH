@@ -31,6 +31,11 @@ public class MemoryManager
 		int index = -1;
 		int msr[] = new int[ms];
 
+		if(jobSize > memorySize[0] && jobSize > memorySize[1] && jobSize > memorySize[2] && jobSize > memorySize[3])
+		{
+			System.out.println("file too big please create something smaller");
+			return;
+		}
 
 		if(job.getName().equals("update file") || job.getName().equals("move file"))
 		{
@@ -46,6 +51,7 @@ public class MemoryManager
 			if(jobSize <= memorySize[i])
 			{
 				msr[i] = memorySize[i] - jobSize;
+				
 			}
 		}
 		int hold = msr[0];
@@ -53,11 +59,16 @@ public class MemoryManager
 
 		//loop through memmorySizeRemaining (msr)
 		//hold best fit index spot
-		for(int a:msr)
+		for(int i = 1; i < msr.length; i++)
 		{
-			if(hold < a)
+			if(hold ==0)
 			{
-				hold = a;
+				hold = msr[i];
+				counter++;
+			}
+			else if(hold > msr[i])
+			{
+				hold = msr[i];
 				counter++;
 			}
 		}

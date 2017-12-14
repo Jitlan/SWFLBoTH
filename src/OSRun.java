@@ -9,7 +9,7 @@ public class OSRun
     MemoryManager memorymanager = new MemoryManager();
     NetworkManager networkmanager = new NetworkManager("",0);
     CaesarCipher cc = new CaesarCipher();
-    fileManager filemanager = new fileManager();
+    FileManager filemanager = new FileManager();
     int jobIDCounter = 0;
     List<Job> files = new ArrayList<Job>();
 
@@ -21,7 +21,7 @@ public class OSRun
       System.out.println("Type \'help\' for a list of commands");
       System.out.println("Enter in a command: ");
       command = s.nextLine();
-
+      try{
       if(command.equals("help"))
       {
         System.out.println("Commands to print are:");
@@ -34,18 +34,23 @@ public class OSRun
 
       if(command.equals("create file"))
       {
-        System.out.println("Name your file");
-        String name = s.nextLine();
-        System.out.println("give file a size");
-        int size = s.nextInt();
-        Job job = filemanager.createFile(name, size, jobIDCounter);
-        jobIDCounter++;
-        files.add(job);
-        memorymanager.BestFit(job);
-        processmanager.loadJob(files);
-        processmanager.runJob();
-        System.out.println("File has been created and memory has been used");
-        System.out.println("current memory sizes are:" + memorymanager.toString());
+    	  try{
+		        System.out.println("Name your file");
+		        String name = s.nextLine();
+		        System.out.println("give file a size");
+		        int size = s.nextInt();
+		        Job job = filemanager.createFile(name, size, jobIDCounter);
+		        jobIDCounter++;
+		        files.add(job);
+		        memorymanager.BestFit(job);
+		        processmanager.loadJob(files);
+		        processmanager.runJob();
+		        System.out.println("File has been created and memory has been used");
+		        System.out.println("current memory sizes are:" + memorymanager.toString());
+    	  }catch(Exception e)
+    	  {
+    		System.out.println("error");  
+    	  }
       }
 
       if(command.equals("delete file"))
@@ -104,6 +109,10 @@ public class OSRun
       {
         System.out.println("Connected to network");
         //network does not work because of port but if it did work it would be an echo
+      }
+      }catch(Exception e)
+      {
+    	  System.out.println("error please try again");
       }
     }
   }
